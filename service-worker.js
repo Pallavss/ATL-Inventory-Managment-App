@@ -1,4 +1,4 @@
-const CACHE_NAME = "inventory-v1";
+const CACHE_NAME = "inventory-v2"; // 👈 change version every update
 
 const urlsToCache = [
   "./",
@@ -8,15 +8,32 @@ const urlsToCache = [
 ];
 
 self.addEventListener("install", event => {
+  self.skipWaiting(); // 🔥 force update
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(urlsToCache))
   );
 });
 
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
+      )
+    )
+  );
+  self.clients.claim(); // 🔥 take control immediately
+});
+
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
+    fetch(event.request).catch(() =>
+      caches.match(event.request)
+    )
   );
 });
