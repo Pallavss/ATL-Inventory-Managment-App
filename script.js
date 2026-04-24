@@ -140,8 +140,8 @@ function render() {
   document.getElementById("grandTotal").innerText = grand;
 }
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("Service Worker Registered"));
+  navigator.serviceWorker.register("./service-worker.js")
+    .then(() => console.log("SW Registered"));
 }
 // 🚀 START
 loadItems();
