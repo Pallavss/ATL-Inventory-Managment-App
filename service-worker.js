@@ -1,10 +1,10 @@
 const CACHE_NAME = "inventory-v1";
 
 const urlsToCache = [
-  "/",
-  "index.html",
-  "style.css",
-  "script.js"
+  "./",
+  "./index.html",
+  "./style.css",
+  "./script.js"
 ];
 
 self.addEventListener("install", event => {
