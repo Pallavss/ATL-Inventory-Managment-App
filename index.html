@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="manifest.json"> 
+  <meta name="theme-color" content="#6366f1">
+  <meta charset="UTF-8">
+  <title>ATL Inventory Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>ATL Inventory</h1>
+  <div>
+    <button onclick="toggleTheme()">🌙</button>
+    <button onclick="switchMode('user')">User</button>
+    <button onclick="loginAdmin()">Admin</button>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="top-bar">
+    <input type="text" id="search" placeholder="Search..." onkeyup="render()">
+    <button onclick="exportCSV()">Export</button>
+  </div>
+
+  <div id="adminPanel" class="hidden glass">
+    <h3>Add Item</h3>
+    <input id="name" placeholder="Item name">
+    <input id="working" type="number" placeholder="Working">
+    <input id="defective" type="number" placeholder="Defective">
+    <button onclick="addItem()">Add</button>
+  </div>
+
+  <div class="stats glass">
+    <p>Working: <span id="totalWorking">0</span></p>
+    <p>Defective: <span id="totalDefective">0</span></p>
+    <p>Total: <span id="grandTotal">0</span></p>
+  </div>
+
+  <table class="glass">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Working</th>
+        <th>Defective</th>
+        <th>Total</th>
+        <th id="actionsHeader" class="hidden">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="inventory"></tbody>
+  </table>
+
+</div>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>
