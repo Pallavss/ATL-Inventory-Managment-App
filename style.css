@@ -145,3 +145,12 @@ tr:hover {
   }
 
 }
+/* Better tap experience */
+button {
+  min-height: 40px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
